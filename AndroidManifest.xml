@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.monitor"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="16" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <service android:name="com.google.android.gms.tagmanager.InstallReferrerService"/>
+ 	 <receiver
+     android:name="com.example.monitor.Receiver">
+     <intent-filter>
+     
+   <action android:name="android.intent.action.PACKAGE_ADDED" />
+     
+    
+   <data android:scheme="package" />
+     </intent-filter>
+ 	 </receiver>
+        
+        
+        <activity
+            android:name="com.example.monitor.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            
+             <intent-filter >
+        <action android:name="android.intent.action.BOOT_COMPLETED"/>
+    </intent-filter>
+    
+        </activity>
+        <activity
+            android:name="com.example.monitor.UninstallApp"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+             ></activity>
+        <activity 
+            android:name="com.example.monitor.warning"></activity>
+    </application>
+
+</manifest>
