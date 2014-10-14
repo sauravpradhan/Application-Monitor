@@ -8,24 +8,29 @@
         android:minSdkVersion="8"
         android:targetSdkVersion="16" />
 
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <service android:name="com.google.android.gms.tagmanager.InstallReferrerService"/>
- 	 <receiver
-     android:name="com.example.monitor.Receiver">
-     <intent-filter>
-     
-   <action android:name="android.intent.action.PACKAGE_ADDED" />
-     
-    
-   <data android:scheme="package" />
-     </intent-filter>
- 	 </receiver>
-        
-        
+        <service android:name="com.google.android.gms.tagmanager.InstallReferrerService" />
+
+        <receiver android:name="com.example.monitor.Receiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.example.monitor.Receiver" 
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
         <activity
             android:name="com.example.monitor.MainActivity"
             android:label="@string/app_name" >
@@ -34,18 +39,16 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            
-             <intent-filter >
-        <action android:name="android.intent.action.BOOT_COMPLETED"/>
-    </intent-filter>
-    
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
         </activity>
         <activity
             android:name="com.example.monitor.UninstallApp"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-             ></activity>
-        <activity 
-            android:name="com.example.monitor.warning"></activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+        </activity>
+        <activity android:name="com.example.monitor.warning" >
+        </activity>
     </application>
 
 </manifest>

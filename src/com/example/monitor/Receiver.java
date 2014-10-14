@@ -27,6 +27,8 @@ public class Receiver extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context context, Intent intent) {
 	
+		if(intent.getAction().equals(Intent.ACTION_PACKAGE_ADDED))
+		{
 
 		Log.d("Saurav", "Broadcast Received:Give command adb shell am broadcast -a android.intent.action.PACKAGE_ADDED");
 		// Toast.makeText(MainActivity.context, "Broadcast receiver", Toast.LENGTH_LONG).show();
@@ -79,7 +81,13 @@ public class Receiver extends BroadcastReceiver {
 			e.printStackTrace();	
 		}
 
-
+		}
+		if(intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED))
+		{
+				Intent i = new Intent(context, MainActivity.class);
+	            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+	            context.startActivity(i);
+		}
 
 	}
 }
