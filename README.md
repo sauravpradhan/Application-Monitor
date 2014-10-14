@@ -12,3 +12,5 @@ Applications are shown on three different tabs and clicking the list takes the u
 Also a notification is triggered when an application is installed.
 
 User also gets warned by a dialog on installing application that access private data.
+
+The application also starts in boot.
